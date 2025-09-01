@@ -1,10 +1,16 @@
 //import { Routes, Route, Link } from "react-router-dom";
-
+import "bootstrap/dist/css/bootstrap.min.css";
+// import { Moon, Sun } from "lucide-react";
+// import { useEffect } from "react";
+import { useTheme } from "./theme";
+import { Button } from "react-bootstrap";
 interface prop {
   items: { pathname: string; path: string }[];
   Role?: string;
 }
 function Navbar({ items, Role }: prop) {
+  const { darkMode, toggleTheme } = useTheme();
+
   return (
     <>
       <nav
@@ -58,6 +64,18 @@ function Navbar({ items, Role }: prop) {
                 Search
               </button>
             </form>
+          </div>
+          <div className="navbar-right">
+            <Button
+              onClick={toggleTheme}
+              variant={darkMode ? "secondary" : "outline-dark"}
+              className="rounded-circle d-flex align-items-center justify-content-center ms-3"
+              style={{ width: "40px", height: "40px" }}
+            >
+              <i
+                className={darkMode ? "bi bi-sun-fill" : "bi bi-moon-fill"}
+              ></i>
+            </Button>
           </div>
         </div>
       </nav>

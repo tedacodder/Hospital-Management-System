@@ -1,3 +1,19 @@
-button{
-    font-weight:bold;
+body {
+  transition: background-color 0.4s ease, color 0.4s ease;
+}
+
+.navbar {
+  transition: background-color 0.4s ease, color 0.4s ease;
+}
+
+button {
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+button:hover {
+  transform: scale(1.1);
+}
+
+button {
+  font-weight: bold;
 }

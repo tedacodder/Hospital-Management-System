@@ -1,14 +1,33 @@
 import React from "react";
 import PatientNav from "../../components/PatientNav";
+import { user_data, fetchData } from "../auth/imports";
+// import { AuthContext } from "../auth/authcontex";
+// import { useContext } from "react";
+import { getExportValue } from "../auth/store";
+fetchData();
+// import { useLocation } from "react-router-dom";
 const Userdashboard = () => {
-  const patient = {
-    name: "Abebe Mekuria",
-    age: 34,
-    gender: "Male",
-    id: "P12345",
-    contact: "0940078732",
-  };
+  const email = getExportValue();
 
+  const patient = {
+    name: "",
+    age: 17,
+    gender: "",
+    id: "",
+    email: "",
+    phone: "",
+    // contact:user_data[0].contact
+  };
+  user_data.map((user) => {
+    if (user.email === email) {
+      patient.name = user.first_name + " " + user.last_name;
+      patient.id = "P" + user.user_id;
+      patient.email = user.email;
+      patient.gender = user.gender;
+      patient.phone = user.phone;
+    }
+  });
+  console.log(email);
   const appointments = [
     {
       date: "2025-08-20",
@@ -38,11 +57,14 @@ const Userdashboard = () => {
       <div className="container mt-5">
         {/* Patient Info */}
         <div className="card shadow-sm p-3 mb-4">
-          <h4 className="mb-3">Patient Profile</h4>
+          <h4 className="mb-3">My Profile</h4>
           <div className="row">
             <div className="col-md-6">
               <p>
                 <strong>Name:</strong> {patient.name}
+              </p>
+              <p>
+                <strong>Email:</strong> {patient.email}
               </p>
               <p>
                 <strong>Age:</strong> {patient.age}
@@ -56,7 +78,7 @@ const Userdashboard = () => {
                 <strong>Patient ID:</strong> {patient.id}
               </p>
               <p>
-                <strong>Contact:</strong> {patient.contact}
+                <strong>Contact:</strong> {patient.phone}
               </p>
             </div>
           </div>
@@ -73,7 +95,7 @@ const Userdashboard = () => {
           <div className="col-md-4">
             <div className="card shadow-sm p-3 bg-light">
               <h5>Pending Bills</h5>
-              <p className="display-6">{2500 + "birr"}</p>
+              <p className="display-6">{2500 + " birr"}</p>
             </div>
           </div>
           <div className="col-md-4">
@@ -121,6 +143,12 @@ const Userdashboard = () => {
           </table>
         </div>
       </div>
+      <footer className="bg-primary text-white text-center p-4 mt-5">
+        <p className="mb-0">
+          &copy; {new Date().getFullYear()} MediCare+ Hospital Management
+          System. All rights reserved.
+        </p>
+      </footer>
     </div>
   );
 };

@@ -1,4 +1,5 @@
+import Userdashboard from "../dashboard/userdashboard";
 function Home() {
-  return;
+  return <Userdashboard />;
 }
 export default Home;

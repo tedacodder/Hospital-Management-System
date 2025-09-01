@@ -13,11 +13,11 @@ const Appointment = () => {
     reason: "",
   });
 
-  const handleChange = (e: FormEvent<HTMLFormElement>) => {
+  const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     console.log("Appointment Data:", formData);
     alert("Appointment submitted successfully!");
